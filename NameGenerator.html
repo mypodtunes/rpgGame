@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<html>
+<head>
+	<title>MMA Fighter Name Generator</title>
+</head>
+<body>
+    <script>
+        var rpgNameGenerator = function() {
+        	var firstNames = [],
+        	    lastNames = [],
+        	    numPlay = parseInt(prompt("How many people are playing?")),
+        	    nickName = ['"The Greasy Grappler"', '"The Murderous"', '"The Dumb-Ass"', '"The Boop"', '"The Pants Shitter"', '"The Worst Person Alive (Hopefully Kevin Gets This One)"', '"Cutie-Poo"', '"Lil Peanut"', '"Kevin Sucks"', '"Beastin 25/8"', '"The Angst Meister"', '"The Prettiest"', '"The Hamburglar"'],
+        	    getRandomInt = function(min, max) {
+        	    	return Math.floor(Math.random() * (max - min)) + min;
+        	    };
+
+
+        	if (isNaN(numPlay) === true) {
+        	    alert("You have to put a number...");
+        	    numPlay = parseInt(prompt("How many people are playing?"));
+        	}
+
+            function numbCheck(toCheck) {
+                var numbCount = 0;
+
+                for (i = 0; i <= toCheck.length; i++) {
+                    if (toCheck[i] <= "9" && toCheck[i] >= "0") {
+                        numbCount++;
+                    }
+                }
+
+                if (numbCount > 0) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            for (k = 0; k < numPlay; k++) {
+        	    firstNames[k] = prompt("Enter your first name, Player " + (k + 1) + ":");
+                    if (numbCheck(firstNames[k]) === true) {
+                        alert("You can't have a number in your name!");
+                        firstNames[k] = prompt("Enter your first name, Player " + (k + 1) + ":");
+                    } 
+                 
+            }
+
+        	for (j = 0; j < numPlay; j++) {
+        		lastNames[j] = prompt("Enter your last name, " + firstNames[j] + ":");
+                    if (numbCheck(lastNames[j]) === true) {
+                        alert("You can't have a number in your name!");
+                        lastNames[j] = prompt("Enter your last name, " + firstNames[j] + ":");
+                    } 
+        	}
+            
+
+        	for (i = 0; i < numPlay; i++) {
+        		alert("Your name is " + firstNames[i] + " " + nickName[getRandomInt(0,nickName.length)] + " " + lastNames[i]);
+        	}
+            
+            function playAgain() {
+        	    var play = prompt("Do you want to play again?");
+
+        	    if (play.toLowerCase() === "yes") {
+        		    rpgNameGenerator();
+        	    } 
+
+        	    else if (play.toLowerCase() === "no") {
+        		    alert("Well, I hope you had a good time.");
+
+        	    }
+
+        	    else {
+        		    alert("You have to answer 'Yes' or 'No'");
+        		    playAgain();
+        	    }
+            }
+            playAgain();
+        };
+
+        rpgNameGenerator();
+    </script>
+</body>
+</html>
